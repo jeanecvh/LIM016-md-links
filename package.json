@@ -1,4 +1,27 @@
 {
   "name": "md-links",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "description": "Analyze files in markdown format and verify links work correctly",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords":[
+    "md-Links",
+    "Markdown",
+    "links"
+  ],
+  "author": {
+    "name": "Jeanella Hugo",
+    "email": "jeanellahugo@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeanecvh/LIM016-md-links"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.3.0"
+  },
+  "dependencies": {}
 }
