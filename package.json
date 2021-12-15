@@ -4,9 +4,10 @@
   "description": "Analyze files in markdown format and verify links work correctly",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "node index.js",
+    "test": "jest"
   },
-  "keywords":[
+  "keywords": [
     "md-Links",
     "Markdown",
     "links"
@@ -21,7 +22,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.3.0"
-  },
-  "dependencies": {}
+    "eslint": "^8.3.0",
+    "jest": "^27.4.5"
+  }
 }
