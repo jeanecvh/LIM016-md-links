@@ -9,33 +9,28 @@ const routeExists = (route) => fs.existsSync(route);
 
 //Validar y convertir si la ruta no es absoluta (usar esta función)
 const routeState = (route) => !path.isAbsolute(route) ? path.resolve(route) : route
+//console.log(routeState('../carpeta_de_prueba'))
 
 // Verificar  si es un directorio
 const itsaDirectory = (route) => fs.statSync(route).isDirectory();
-// const itsaDirectory = fs.statSync('./README.md').isDirectory(); console.log(itsaDirectory);
 
 // leer directorio
 const readDirectory = (route) => fs.readdirSync(route);
-//const archivos = fs.readdir('./', (err, files)=>{ if (err) return console.log(files)})
 
 // verificar si es un archivo
 const istaFile = (route) => fs.statSync(route).isFile();
-//const istaFile = fs.statSync('./README.md').isFile(); console.log(istaFile);
 
 //leer contenido del archivo
 const readFilemd = (route) =>  fs.readFileSync(route,'utf8');
-// fs.readFile('./README.md', 'utf8', (err, contenido) =>{if (err) throw err console.log(contenido)})
 
 // Validar extensión del archivo = md
-const validateExtension = (route) => path.extname(route) === '.md';
-// var validateExtension = path.extname('./README.md');console.log(validateExtension);
+const validateExtension = (route) => path.extname(route) === '.md'; // retorna true or false
 
 // Unir dos rutas fragmentadas: ruta del directorio + ruta de cada uno de los archivos
 const joinPaths = (route) => {
     return readDirectory(route).map((elemento) => path.join(route, elemento));
 };
-
-const prueba = console.log(joinPaths.(routeState('../carpeta_de_prueba')))
+//console.log(joinPaths('C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba'))
 
 // * Función para buscar archivos .md con su ruta para poder guardarlos los archivos en un array
 const searchPathMd = (route) => {
@@ -54,10 +49,36 @@ const searchPathMd = (route) => {
 
 //console.log(searchPathMd('../carpeta_de_prueba'))
 
-// Expresiones regulares para reconocer la estructura de los links
+
 const regexAllLink = /\[([^\[]+)\](\(.*\))/gm;
-const regexText = /\[([\w\s\d.()]+)\]/g;
-const regexLink = /\((((ftp|http|https):\/\/)[\w\d\s./?=#&_%~,\-.:]+)\)/g;
+const regexReconoceTexto = /\[([\w\s\d.()]+)\]/g;
+const regexReconoceLinks = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
+
+const ObtenerLinks = (route) => {
+  const arrayTodasPropiedades = [];
+  searchPathMd(route).forEach((eachRouteMd) => {
+      const readEachMd = readFilemd(eachRouteMd);// Lee cada link completo del archivo .md evaluado
+      const fitLinkAll = readEachMd.match(regexAllLink);// Nos da un array con links que cumplen con la estructura de acuerdo a la exp regular declarada
+      if(readEachMd.length > 0 && regexAllLink.test(readEachMd) === true){
+          fitLinkAll.forEach((e)=>{
+              const objetoPropiedadessLink = {
+                  href: e.match(regexReconoceLinks).toString(),
+                  text: e.match(regexReconoceTexto).join().slice(1,-1),
+                  file: eachRouteMd,
+              };
+              arrayTodasPropiedades.push(objetoPropiedadessLink);
+          });
+      } else if (!regexAllLink.test(readEachMd)){
+        console.log("No found links");
+      }
+  });
+  return arrayTodasPropiedades;
+};
+
+//console.log(ObtenerLinks('C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba'));
+
+
+
 
 module.exports = { routeExists, routeState, itsaDirectory, istaFile, readDirectory, joinPaths, validateExtension, readFilemd, searchPathMd
 };
