@@ -2,14 +2,13 @@ let fs = require('fs');
 const path = require('path');
 //const fetch = require('node-fetch');
 
-
 // La ruta existe
 const routeExists = (route) => fs.existsSync(route);
 //const routeExists = fs.existsSync ('../README.md'); console.log (routeExists);
 
 //Validar y convertir si la ruta no es absoluta (usar esta función)
 const routeState = (route) => !path.isAbsolute(route) ? path.resolve(route) : route
-//console.log(routeState('../carpeta_de_prueba'))
+//console.log(routeState(process.argv[2]))
 
 // Verificar  si es un directorio
 const itsaDirectory = (route) => fs.statSync(route).isDirectory();
@@ -22,6 +21,7 @@ const istaFile = (route) => fs.statSync(route).isFile();
 
 //leer contenido del archivo
 const readFilemd = (route) =>  fs.readFileSync(route,'utf8');
+//console.log(readFilemd('../carpeta_de_prueba/links_prueba.md'))
 
 // Validar extensión del archivo = md
 const validateExtension = (route) => path.extname(route) === '.md'; // retorna true or false
@@ -46,7 +46,6 @@ const searchPathMd = (route) => {
   };
   return containerFilesmd;
 }
-
 //console.log(searchPathMd('../carpeta_de_prueba'))
 
 
@@ -80,7 +79,17 @@ const ObtenerLinks = (route) => {
 
 
 
-module.exports = { routeExists, routeState, itsaDirectory, istaFile, readDirectory, joinPaths, validateExtension, readFilemd, searchPathMd
+module.exports = {
+  routeExists,
+  routeState,
+  itsaDirectory,
+  istaFile,
+  readDirectory,
+  joinPaths,
+  validateExtension,
+  readFilemd,
+  searchPathMd,
+  ObtenerLinks
 };
 
 

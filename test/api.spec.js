@@ -1,9 +1,20 @@
-const { routeExists, routeState, itsaDirectory, istaFile, readDirectory, joinPaths, validateExtension, readFilemd, searchPathMd
-} = require('../src/api.js')
+const path = require('path');
+const {
+  routeExists,
+  routeState,
+  itsaDirectory,
+  istaFile,
+  readDirectory,
+  joinPaths,
+  validateExtension,
+  readFilemd,
+  searchPathMd,
+  ObtenerLinks } = require('../src/api.js')
 
-const route = 'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\README.md';
+const regex = /\//gi
+const route = (path.resolve('..\\README.md').replace(/\\/g,"\\\\"));
 const routeFalse = 'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\README123.md';
-const routeDirectory = 'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links';
+const routeDirectory = (path.resolve('..\\..\\LIM016-md-links').replace(/\\/g,"\\\\"));
 const notRoutemd = 'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\prueba.text';
 const directoryPrueba = 'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba'
 const filesPrueba = [ 'carpeta_prueba_1', 'carpeta_prueba_2', 'links_prueba.md', 'prueba.text','text.md' ];
@@ -19,8 +30,20 @@ const routesfilesMD = [
   'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\carpeta_prueba_2\\text1.md',
   'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\links_prueba.md',
   'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\text.md'
-]
+];
 
+const mdLinks = [
+  {
+    href: 'https://nodejs.org/dist/latest-v17.x/docs/api/fs.html',
+    text: 'a link',
+    file: 'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\carpeta_prueba_1\\fs.md'
+  },
+  {
+    href: 'https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#fsreadfilesyncpath-options',
+    text: 'nodeJs',
+    file: 'C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\links_prueba.md'
+  }
+]
 
 describe('routeExists', () => {
   it('retorna true si el parametro (route) existe', () => {
@@ -28,13 +51,13 @@ describe('routeExists', () => {
   });
   it('retorna false si el parametro (route) no existe', () => {
     expect(routeExists(routeFalse)).toBe(false);
-  })
+  });
 
 });
 
 describe('routeState', () => {
   it('debe retornar una ruta absoluta', () => {
-    expect(routeState('README.md')).toBe(route);
+    expect(routeState('../README.md')).toBe(route);
   });
 });
 
@@ -62,9 +85,9 @@ describe('validateExtension', () => {
   });
 
   it ('debe retornar false si la extensión, no es md', () => {
-    expect(validateExtension(notRoutemd).toBe(false))
-  })
-})
+    expect(validateExtension(notRoutemd)).toBe(false);   //ERROOOOOOOOR
+  });
+});
 
 describe('readDirectory', () => {
   it('debe retornar las carpetas y files que hay dentro del directorio', () => {
@@ -80,13 +103,13 @@ describe('joinPaths', () => {
 
 describe('readFilemd', () => {
   it('debe retornar en un string todo el contenido del file', () => {
-    const result = readFilemd('C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\links_prueba.md',);
-    expect(result.trim()).toEqual(`[a link](https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#fsreadfilesyncpath-options)`);
+    const result = readFilemd('C:\\Users\\Jeanella\\Desktop\\LIM016-md-links\\carpeta_de_prueba\\links_prueba.md');
+    expect(result).toEqual(expect.stringContaining(`[nodeJs](https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#fsreadfilesyncpath-options)`)); // ERROOOOOOOOOOR
   });
 });
 
 describe('searchPathMd', () => {
   it ('retorna un array de rutas absolutas de archivos md', () => {
-    expect(searchPathMd(directoryPrueba).toEqual(routesfilesMD))
-  })
-})
+    expect(searchPathMd(directoryPrueba)).toEqual(routesfilesMD);
+  });
+});
