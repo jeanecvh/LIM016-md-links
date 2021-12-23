@@ -46,7 +46,7 @@ const searchPathMd = (route) => {
   };
   return containerFilesmd;
 }
-//console.log(searchPathMd('../carpeta_de_prueba'))
+//console.log(searchPathMd('./carpeta_de_prueba'))
 
 
 const regexAllLink = /\[([^\[]+)\](\(.*\))/gm;
