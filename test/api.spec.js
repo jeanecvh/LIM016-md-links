@@ -9,7 +9,7 @@ const {
   validateExtension,
   readFilemd,
   searchPathMd,
-  ObtenerLinks } = require('../src/api.js')
+  ObtenerLinks } = require('../src/api.js').default
 
 const route = path.resolve(`./README.md`);
 const routeFalse = 'C:/Users/Jeanella/Desktop/LIM016-md-links/README123.md';
@@ -34,12 +34,17 @@ const mdLinks = [
   {
     href: 'https://nodejs.org/dist/latest-v17.x/docs/api/fs.html',
     text: 'a link',
-    file: 'C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba/carpeta_prueba_1/fs.md'
+    file: path.resolve('./carpeta_de_prueba/carpeta_prueba_1/fs.md')
+  },
+  {
+    href: 'https://bitly.com/404-error-page',
+    text: 'error',
+    file: path.resolve('./carpeta_de_prueba/carpeta_prueba_1/fs.md')
   },
   {
     href: 'https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#fsreadfilesyncpath-options',
     text: 'nodeJs',
-    file: 'C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba/links_prueba.md'
+    file: path.resolve('./carpeta_de_prueba/links_prueba.md'),
   }
 ]
 
@@ -112,3 +117,5 @@ describe('searchPathMd', () => {
     expect(searchPathMd(routeDirectory)).toEqual(routesfilesMD);
   });
 });
+
+
