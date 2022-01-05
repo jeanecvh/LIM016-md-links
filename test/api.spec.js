@@ -9,7 +9,7 @@ const {
   validateExtension,
   readFilemd,
   searchPathMd,
-  ObtenerLinks } = require('../src/api.js').default
+  obtenerLinks } = require('../src/api.js').default
 
 const route = path.resolve(`./README.md`);
 const routeFalse = 'C:/Users/Jeanella/Desktop/LIM016-md-links/README123.md';
@@ -117,5 +117,11 @@ describe('searchPathMd', () => {
     expect(searchPathMd(routeDirectory)).toEqual(routesfilesMD);
   });
 });
+
+describe('obtenerLinks', () => {
+  it('retorna un array de solo archivos .md que contengan links con las propiedades de los mismos', () => {
+    expect(obtenerLinks(routeDirectory).toEqual(mdLinks))
+  })
+})
 
 
