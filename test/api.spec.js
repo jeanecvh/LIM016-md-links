@@ -1,4 +1,5 @@
 const path = require('path');
+const mockNodeFetch = requiere('../_MOCK_/node-fetch.js')
 const {
   routeExists,
   routeState,
@@ -9,7 +10,8 @@ const {
   validateExtension,
   readFilemd,
   searchPathMd,
-  obtenerLinks } = require('../src/api.js').default
+  obtenerLinks,
+  funcionObtenerStatusdeLinks } = require('../src/api.js')
 
 const route = path.resolve(`./README.md`);
 const routeFalse = 'C:/Users/Jeanella/Desktop/LIM016-md-links/README123.md';
@@ -118,10 +120,14 @@ describe('searchPathMd', () => {
   });
 });
 
-describe('obtenerLinks', () => {
-  it('retorna un array de solo archivos .md que contengan links con las propiedades de los mismos', () => {
-    expect(obtenerLinks(routeDirectory).toEqual(mdLinks))
-  })
-})
 
+describe('obtenerLinks', () => {
+  it.only('retorna un array de solo archivos .md que contengan links con las propiedades de los mismos', () => {
+    expect(obtenerLinks(routeDirectory).toEqual(mdLinks))
+  });
+});
+
+describe ('funcionObtenerStatusdeLinks', () => {
+  it('retorna el mismo arrar de obtenerLinks, pero como el status del link ')
+})
 
