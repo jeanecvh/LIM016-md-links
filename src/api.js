@@ -53,7 +53,7 @@ const regexAllLink = /\[([^\[]+)\](\(.*\))/gm;
 const regexReconoceTexto = /\[([\w\s\d.()]+)\]/g;
 const regexReconoceLinks = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
 
-const ObtenerLinks = (route) => {
+const obtenerLinks = (route) => {
   const arrayTodasPropiedades = [];
   searchPathMd(route).forEach((eachRouteMd) => {
       const readEachMd = readFilemd(eachRouteMd);// Lee cada link completo del archivo .md evaluado
@@ -74,7 +74,7 @@ const ObtenerLinks = (route) => {
   return arrayTodasPropiedades;
 };
 
-//console.log(ObtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
+console.log(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
 
 // Función que devuelve una promesa para obtener el status y las propiedades completas de los links en caso si sean validadas las options
 
@@ -87,7 +87,7 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
           text: elemento.text, // jala el key "text" del objeto anterior
           file: elemento.file,
           status: res.status, // el método status pertenece a fetch y devuelve un number
-          message: res.status >= 200 && res.status <= 299 ? 'This link works' : 'This link not', // Normalmente cuando el status de la peticion http da un numero con base 2 significa que la peticion ha tenido éxito
+          message: res.status >= 200 && res.status <= 299 ? 'OK' : 'FAIL', // Normalmente cuando el status de la peticion http da un numero con base 2 significa que la peticion ha tenido éxito
         };
         return data;
       }).catch((error) => {
@@ -96,15 +96,16 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
           text: elemento.text,
           file: elemento.file,
           status: 'Error ' + error,
-          message: 'fail'
+          message: 'FAIL'
         };
         return (data);
       }));
   return Promise.all(arrayDeLinksValidados);
 };
 
-console.log(funcionObtenerStatusdeLinks(ObtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')));
-const statusLink = funcionObtenerStatusdeLinks(ObtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
+
+console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')));
+const statusLink = funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
 statusLink.then( res => console.log(res)).catch( error => console.log(error));
 
 /*
@@ -148,7 +149,8 @@ module.exports = {
   validateExtension,
   readFilemd,
   searchPathMd,
-  ObtenerLinks
+  obtenerLinks,
+  funcionObtenerStatusdeLinks
 };
 
 
