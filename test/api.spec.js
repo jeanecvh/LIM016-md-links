@@ -1,5 +1,4 @@
 const path = require('path');
-const mockNodeFetch = requiere('../_MOCK_/node-fetch.js')
 const {
   routeExists,
   routeState,
@@ -47,6 +46,30 @@ const mdLinks = [
     href: 'https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#fsreadfilesyncpath-options',
     text: 'nodeJs',
     file: path.resolve('./carpeta_de_prueba/links_prueba.md'),
+  }
+]
+
+const mdLinksWithStatus = [
+  {
+    href: 'https://nodejs.org/dist/latest-v17.x/docs/api/fs.html',
+    text: 'a link',
+    file: path.resolve('./carpeta_de_prueba/carpeta_prueba_1/fs.md'),
+    status: 200,
+    message: 'OK'
+  },
+  {
+    href: 'https://bitly.com/404-error-page',
+    text: 'error',
+    file: path.resolve('./carpeta_de_prueba/carpeta_prueba_1/fs.md'),
+    status: 404,
+    message: 'FAIL'
+  },
+  {
+    href: 'https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#fsreadfilesyncpath-options',
+    text: 'nodeJs',
+    file: path.resolve('./carpeta_de_prueba/links_prueba.md'),
+    status: 200,
+    message: 'OK'
   }
 ]
 
@@ -122,12 +145,13 @@ describe('searchPathMd', () => {
 
 
 describe('obtenerLinks', () => {
-  it.only('retorna un array de solo archivos .md que contengan links con las propiedades de los mismos', () => {
-    expect(obtenerLinks(routeDirectory).toEqual(mdLinks))
+  it('retorna un array de solo archivos .md que contengan links con las propiedades de los mismos', () => {
+    expect(obtenerLinks(routeDirectory)).toEqual(mdLinks)
   });
 });
 
 describe ('funcionObtenerStatusdeLinks', () => {
-  it('retorna el mismo arrar de obtenerLinks, pero como el status del link ')
+  it('retorna el mismo arrary de obtenerLinks, pero como el status del link', () =>{
+      return expect(funcionObtenerStatusdeLinks(mdLinks)).resolves.toStrictEqual(mdLinksWithStatus)
+  })
 })
-
