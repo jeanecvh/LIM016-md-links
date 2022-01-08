@@ -107,36 +107,6 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
 /*console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')));
 const statusLink = funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
 statusLink.then( res => console.log(res)).catch( error => console.log(error));*/
-/*
-const getValidLinks = (result) => {
-  const arrayDeLinksValidados = []
-   fetch(result.href)
-  .then(res => {
-    const objRes = {
-      href: result.href,
-      title: result.title,
-      file: result.file,
-      status: res.status,
-      message: res.status >= 200 && res.status <= 299 ? 'OK' : 'fail'
-      }
-      return objRes //arrayDeLinksValidados.push(objRes);
-  }).catch(rej => {
-    const objRej ={
-      href: result.href,
-      title: result.title,
-      file:result.file,
-      status: rej.status,
-      message: 'ERROR SERVER'
-    }
-    console.log('prueba:', arrayDeLinksValidados)
-    return objRej //arrayDeLinksValidados.push(objRej);
-  })
-  return Promise.all(arrayDeLinksValidados.map(result))
-};
-const prueba = console.log(ObtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'))
-const prueba2 = console.log(getValidLinks(prueba).then( res => console.log(res)).catch( rej => console.log(rej)));
-console.log(prueba2)
-*/
 
 module.exports = {
   routeExists,

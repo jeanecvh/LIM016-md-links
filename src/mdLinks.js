@@ -8,12 +8,11 @@ const mdLinks = (path, option = {}) => {
       const propiedadesDeLinks =  allFunctions.obtenerLinks(path);
         if (!(option.validate)){
           resolve (propiedadesDeLinks);
+        } else {
+          const statusDeLinks = allFunctions.funcionObtenerStatusdeLinks(path);
+          resolve(statusDeLinks)
         }
     }
   });
 }
-
- const resultado = mdLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba', { validate: false })
-resultado.then((resul) => console.log (resul)).catch((err)=> console.log(err));
-
 module.exports = { mdLinks };
