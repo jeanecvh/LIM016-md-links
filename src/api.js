@@ -72,7 +72,7 @@ const obtenerLinks = (route) => {
   return arrayTodasPropiedades;
 };
 
-console.log(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
+//console.log(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
 
 // Función que devuelve una promesa para obtener el status y las propiedades completas de los links en caso si sean validadas las options
 
@@ -85,7 +85,7 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
           elemento.text, // jala el key "text" del objeto anterior
           elemento.file,
           elemento.status = res.status, // el método status pertenece a fetch y devuelve un number
-          elemento.ok = (res.status >= 200) && (res.status <= 399) ? 'ok' :'fail'; // Normalmente cuando el status de la peticion http da un numero con base 2 significa que la peticion ha tenido éxito
+          elemento.message = (res.status >= 200) && (res.status <= 399) ? 'ok' :'fail'; // Normalmente cuando el status de la peticion http da un numero con base 2 significa que la peticion ha tenido éxito
         return elemento;
       }).catch((error) => {
         return {
