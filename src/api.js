@@ -53,7 +53,8 @@ const regexAllLink = /\[([^\[]+)\](\(.*\))/gm;
 const regexReconoceTexto = /\[([\w\s\d.()]+)\]/g;
 const regexReconoceLinks = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
 
-const obtenerLinks = (route, array) => {
+const obtenerLinks = (route) => {
+  const arrayTodasPropiedades = [];
   searchPathMd(route).forEach((eachRouteMd) => {
       const readEachMd = readFilemd(eachRouteMd);// Lee cada link completo del archivo .md evaluado
       const fitLinkAll = readEachMd.match(regexAllLink);// Nos da un array con links que cumplen con la estructura de acuerdo a la exp regular declarada
@@ -64,29 +65,29 @@ const obtenerLinks = (route, array) => {
                   text: e.match(regexReconoceTexto).join().slice(1,-1),
                   file: eachRouteMd,
               };
-              array.push(objetoPropiedadessLink);
+              arrayTodasPropiedades.push(objetoPropiedadessLink);
           });
       }
   });
-  return array;
+  return arrayTodasPropiedades;
 };
 
-console.log(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba', []));
+console.log(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
 
 // Función que devuelve una promesa para obtener el status y las propiedades completas de los links en caso si sean validadas las options
 
 const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
-  console.log(typeof(arrayDeLinksyPropiedades))
-  const arrayDeLinksValidados = arrayDeLinksyPropiedades.map(function(elemento) {
+  //console.log(typeof(arrayDeLinksyPropiedades))
+  const arrayDeLinksValidados = arrayDeLinksyPropiedades.map((elemento) =>
     fetch(elemento.href)
-      .then((...res) => {
+      .then((res) => {
           elemento.href,
           elemento.text, // jala el key "text" del objeto anterior
           elemento.file,
           elemento.status = res.status, // el método status pertenece a fetch y devuelve un number
           elemento.ok = (res.status >= 200) && (res.status <= 399) ? 'ok' :'fail'; // Normalmente cuando el status de la peticion http da un numero con base 2 significa que la peticion ha tenido éxito
         return elemento;
-      }).catch((...error) => {
+      }).catch((error) => {
         return {
           href: elemento.href,
           text: elemento.text,
@@ -94,13 +95,11 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
           status: 'Error ' + error,
           message: 'FAIL'
         };
-      });
+      }));
 
-  return Promise.all(arrayDeLinksValidados);
-});
-  }
-
-//console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')))
+  return Promise.all(arrayDeLinksValidados).then( res => console.log(res)).catch( error => console.log(error));
+};
+console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')))
 
 /*console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')));
 const statusLink = funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));

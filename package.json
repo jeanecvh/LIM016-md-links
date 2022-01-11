@@ -1,8 +1,11 @@
 {
-  "name": "md-links",
+  "name": "npm-md-links-jeane",
   "version": "0.1.0",
-  "description": "Analyze files in markdown format and verify links work correctly",
-  "main": "index.js",
+  "description": "Analiza files en lenguaje markdown para verificar los links que funcionan y no funcionan correctamente",
+  "main": "./src/cli.js",
+  "bin": {
+    "md-Links": "./src/cli.js"
+  },
   "scripts": {
     "dev": "node index.js",
     "test": "jest --coverage"
@@ -16,6 +19,7 @@
     "name": "Jeanella Hugo",
     "email": "jeanellahugo@gmail.com"
   },
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/jeanecvh/LIM016-md-links"
