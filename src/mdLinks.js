@@ -5,11 +5,11 @@ const mdLinks = (path, option = {}) => {
     if (!allFunctions.routeExists(path)){
       reject("La ruta no existe");
     } else {
-      const propiedadesDeLinks =  allFunctions.obtenerLinks(path,[]);
+      const propiedadesDeLinks =  allFunctions.obtenerLinks(path);
         if (!(option.validate)){
           resolve (propiedadesDeLinks);
         } else {
-          const statusDeLinks = allFunctions.funcionObtenerStatusdeLinks(path);
+          const statusDeLinks = allFunctions.funcionObtenerStatusdeLinks(propiedadesDeLinks);
           resolve (statusDeLinks)
         }
     }

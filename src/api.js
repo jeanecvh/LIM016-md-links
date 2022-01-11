@@ -77,7 +77,7 @@ console.log(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_p
 // Función que devuelve una promesa para obtener el status y las propiedades completas de los links en caso si sean validadas las options
 
 const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
-  //console.log(typeof(arrayDeLinksyPropiedades))
+  //console.log(typeof arrayDeLinksyPropiedades)
   const arrayDeLinksValidados = arrayDeLinksyPropiedades.map((elemento) =>
     fetch(elemento.href)
       .then((res) => {
@@ -97,9 +97,9 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
         };
       }));
 
-  return Promise.all(arrayDeLinksValidados).then( res => console.log(res)).catch( error => console.log(error));
+  return Promise.all(arrayDeLinksValidados) //.then( res => console.log(res)).catch( error => console.log(error));
 };
-console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')))
+//console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')))
 
 /*console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')));
 const statusLink = funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
