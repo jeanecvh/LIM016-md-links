@@ -35,6 +35,6 @@
     "node-fetch": "^2.6.1"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/@jeanecvh"
-  },
+    "registry":"https://npm.pkg.github.com"
+  }
 }
