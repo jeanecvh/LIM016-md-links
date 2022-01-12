@@ -3,7 +3,9 @@
 * [MdLinks By Jeane](#MdLinks-By-Jeane)
 * [1. Flujogramas](#1-Flujogramas)
 * [2. Guía de uso](#2-Guía-de-uso)
-
+* [3. Liberías empleadas](#3-Liberías-empleadas)
+* [4. Fuentes](#4-Fuentes)
+* [5. Autores](#4-Autores)
 
 ***
 # MdLinks By Jeane
