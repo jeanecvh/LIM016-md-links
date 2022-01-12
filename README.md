@@ -81,16 +81,61 @@ message: fail
 
 * #### --stats
 
-Si pasamos la opción --stats nos retornará las estadísticas (total de links y links únicos) de la carpeta u archivo ingresado.
+Si pasamos la opción "--stats" nos retornará las estadísticas (total de links y links únicos) de la carpeta u archivo ingresado.
 
 ```sh
 md-links carpeta_de_prueba --stats
 Total: 4
 Unique: 3
-
 ```
 
 * #### --validate --stats o --stats --validate
+
+Si pasamos la opción "--validate --stats ó --stats --validate}2 nos retornará las estadísticas (total de links, links únicos y links rotos ) de la carpeta u archivo ingresado.
+
+```sh
+$ md-links carpeta_de_prueba --validate --stats
+Total: 4
+Unique: 3
+Broken: 1
+```
+
+* #### --help
+Si pasamos la opción "--help" nos retornará un texto indicando las opciones válidas y lo que retorna cada una
+
+```sh
+md-links carpeta_de_prueba --help
+
+  ******************** MD-LINKS HELP ********************
+    Debe ingresar la ruta del archivo ya sea relativa o absoluta, por ejemplo:
+
+      C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba
+
+                                 o también:
+      carpeta_de_prueba
+
+    Opciones válidas:
+
+      --stats
+          ¿Para qué sirve?
+            Te mostrará el total de links y los links únicos que encontró
+          Ejemplo:
+            mdLinks <route> --stats
+
+      --validate
+          ¿Para qué sirve?
+            Te mostrará el link (href), el texto que figura para enlazar el link (text), su ruta (file), el statuts y el mensaje del status (message)
+          Ejemplo:
+            mdLinks <route> --validate
+
+      --stats --validate  o --validate --stats
+          ¿Para qué sirve?
+            Te mostrará el total de links, unicos y rotos.
+          Ejemplo:
+            md-links <route> --stats --validate
+
+    También si escribes solamente "md-links carpeta_de_prueba" obtendrás el link, el texto que lo enlaza y su ruta
+```
 ******
 
 ## 3. Liberías empleadas

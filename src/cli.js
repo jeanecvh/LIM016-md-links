@@ -55,6 +55,6 @@ Broken: ${brokenOfLinksStats(res)}`
           ))
           .catch(err => console.log(err));
   } else{
-      console.log(colors.brightRed('Lo siento el comando no existe, puedes ver las opciones mediante el comando "--help" \nRecuerda usarlo de la siguiente manera "md-links (ruta) "--help"'))
+      console.log('Lo siento el comando no existe, puedes ver las opciones mediante el comando "--help" \nRecuerda usarlo de la siguiente manera "md-links (ruta) "--help"')
   }
 }
