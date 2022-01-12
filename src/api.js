@@ -82,7 +82,7 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
           elemento.text, // jala el key "text" del objeto anterior
           elemento.file,
           elemento.status = res.status, // el método status pertenece a fetch y devuelve un number
-          elemento.message = (res.status >= 200) && (res.status <= 399) ? 'ok' :'fail'; // Normalmente cuando el status de la peticion http da un numero con base 2 significa que la peticion ha tenido éxito
+          elemento.message = (res.status >= 200) && (res.status <= 399) ? 'OK' :'FAIL'; // Normalmente cuando el status de la peticion http da un numero con base 2 significa que la peticion ha tenido éxito
         return elemento;
       }).catch((error) => {
         return {
@@ -94,7 +94,7 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
         };
       }));
 
-  return Promise.all(arrayDeLinksValidados) //.then( res => console.log(res)).catch( error => console.log(error));
+  return Promise.all(arrayDeLinksValidados)
 };
 
 
