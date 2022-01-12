@@ -47,7 +47,7 @@ Unique: ${uniqueLinks(res)}`
 if(args.length === 3){
   if ((args[1] === "--stats" && args[2] === "--validate") ||
   (args[1] === "--validate" && args[2] === "--stats")) {
-      mdLinks(arguments[0], { validate: true })
+      mdLinks(args[0], { validate: true })
           .then(res=> console.log(
 `Total: ${totalLinks(res)}
 Unique: ${uniqueLinks(res)}
