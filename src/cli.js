@@ -12,7 +12,7 @@ if(args.length === 0) {
 
 if (args.length === 1){
     mdLinks(args[0], { validate:false })
-    .then(res=>res.forEach(e=> console.log([`\nhref: ${e.href}\ntext: ${e.text} \nfile: ${e.file}`])))
+    .then(res=>res.forEach(e=> console.log(`\nhrefmd-links: ${e.href}\ntext: ${e.text}\nfile: ${e.file}\n`)))
     .catch(err => console.log(err));
 }
 
@@ -35,10 +35,10 @@ Unique: ${uniqueLinks(res)}`
       break;
 
       case '--help':
-          console.log(`${userHelp}`);
+          console.log(`${userHelp()}`);
       break;
 
-      default: console.log('Lo siento el comando no existe, puedes ver las opciones mediante el comando "--help" ');
+      default: console.log('Lo siento el comando no existe, puedes ver las opciones mediante el comando "--help" \nRecuerda usarlo de la siguiente manera "md-links (ruta) --help"');
       break;
   };
 
@@ -55,6 +55,6 @@ Broken: ${brokenOfLinksStats(res)}`
           ))
           .catch(err => console.log(err));
   } else{
-      console.log(colors.brightRed('Lo siento el comando no existe, puedes ver las opciones mediante el comando "--help"'))
+      console.log(colors.brightRed('Lo siento el comando no existe, puedes ver las opciones mediante el comando "--help" \nRecuerda usarlo de la siguiente manera "md-links (ruta) "--help"'))
   }
 }

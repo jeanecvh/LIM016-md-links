@@ -1,5 +1,5 @@
 {
-  "name": "npm-md-links-jeane",
+  "name": "md-links-jeane",
   "version": "0.1.0",
   "description": "Analiza files en lenguaje markdown para verificar los links que funcionan y no funcionan correctamente",
   "main": "./src/cli.js",

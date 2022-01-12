@@ -52,8 +52,8 @@ describe('mdLinks', () => {
     const resultado = mdLinks(path.resolve('./carpeta_de_prueba'),{ validate: false });
     resultado.then((res) => expect(res).toEqual(mdLinksReject));
   });
-  /*it('debe retornar en un array de objetos, las propiedades de los links más sus status pertenecientes solo a archivos .md de la ruta que se ingresa si ha sido validado (options)', () => {
+  it('debe retornar en un array de objetos, las propiedades de los links más sus status pertenecientes solo a archivos .md de la ruta que se ingresa si ha sido validado (options)', () => {
     const resultado = mdLinks(path.resolve('./carpeta_de_prueba'),{ validate: true });
-    resultadod.then((res) => expect(res).toEqual(mdLinksWithStatus));
-  });*/
+    resultado.then((res) => expect(res).toEqual(mdLinksWithStatus));
+  });
 })

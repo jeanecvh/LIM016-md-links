@@ -46,7 +46,6 @@ const searchPathMd = (route) => {
   };
   return containerFilesmd;
 }
-//console.log(searchPathMd('./carpeta_de_prueba'))
 
 
 const regexAllLink = /\[([^\[]+)\](\(.*\))/gm;
@@ -72,12 +71,10 @@ const obtenerLinks = (route) => {
   return arrayTodasPropiedades;
 };
 
-//console.log(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
 
 // Función que devuelve una promesa para obtener el status y las propiedades completas de los links en caso si sean validadas las options
 
 const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
-  //console.log(typeof arrayDeLinksyPropiedades)
   const arrayDeLinksValidados = arrayDeLinksyPropiedades.map((elemento) =>
     fetch(elemento.href)
       .then((res) => {
@@ -99,11 +96,7 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
 
   return Promise.all(arrayDeLinksValidados) //.then( res => console.log(res)).catch( error => console.log(error));
 };
-//console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')))
 
-/*console.log(funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba')));
-const statusLink = funcionObtenerStatusdeLinks(obtenerLinks('C:/Users/Jeanella/Desktop/LIM016-md-links/carpeta_de_prueba'));
-statusLink.then( res => console.log(res)).catch( error => console.log(error));*/
 
 module.exports = {
   routeExists,
