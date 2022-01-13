@@ -40,9 +40,9 @@ Unique: ${uniqueLinks(res)}`
 
       default: console.log('Lo siento el comando no existe, puedes ver las opciones mediante el comando "--help" \nRecuerda usarlo de la siguiente manera "md-links (ruta) --help"');
       break;
-  };
+  }
 
-};
+}
 
 if(args.length === 3){
   if ((args[1] === "--stats" && args[2] === "--validate") ||

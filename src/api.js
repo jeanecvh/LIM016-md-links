@@ -43,7 +43,7 @@ const searchPathMd = (route) => {
       const mdFiles = searchPathMd(element);
       containerFilesmd = containerFilesmd.concat(mdFiles);
     });
-  };
+  }
   return containerFilesmd;
 }
 
