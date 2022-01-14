@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 let fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch'); //node-fetch from v3 is an ESM-only module - you are not able to import it with require() - se realizó la instalación antigua de node, que permite llamarlo con require
@@ -59,9 +60,11 @@ const obtenerLinks = (route) => {
       const fitLinkAll = readEachMd.match(regexAllLink);// Nos da un array con links que cumplen con la estructura de acuerdo a la exp regular declarada
       if(readEachMd.length > 0 && regexAllLink.test(readEachMd) === true){
           fitLinkAll.forEach((e)=>{
+            const hrefMatch = e.match(regexReconoceLinks)
+            const textMatch = e.match(regexReconoceTexto)
               const objetoPropiedadessLink = {
-                  href: e.match(regexReconoceLinks).toString(),
-                  text: e.match(regexReconoceTexto).join().slice(1,-1),
+                  href: hrefMatch ? hrefMatch[0] : "",
+                  text: (textMatch ? textMatch[0] : "").slice(1,-1),
                   file: eachRouteMd,
               };
               arrayTodasPropiedades.push(objetoPropiedadessLink);
