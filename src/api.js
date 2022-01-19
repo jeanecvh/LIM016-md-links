@@ -100,6 +100,7 @@ const funcionObtenerStatusdeLinks = (arrayDeLinksyPropiedades) => {
   return Promise.all(arrayDeLinksValidados)
 };
 
+//funcionObtenerStatusdeLinks(obtenerLinks('../carpeta_de_prueba')).then((res) => console.log(res))
 
 module.exports = {
   routeExists,

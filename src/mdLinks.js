@@ -6,7 +6,7 @@ const mdLinks = (path, option = {}) => {
     if (allFunctions.routeExists(normalizePath)){
       const propiedadesDeLinks =  allFunctions.obtenerLinks(normalizePath);
       if (!(option.validate)){
-        resolve (propiedadesDeLinks);
+        resolve(propiedadesDeLinks);
       } else {
         const statusDeLinks = allFunctions.funcionObtenerStatusdeLinks(propiedadesDeLinks);
         resolve (statusDeLinks)

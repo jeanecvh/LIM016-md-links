@@ -2,7 +2,7 @@
   "name": "md-links-jeane",
   "version": "0.1.1",
   "description": "Analiza files en lenguaje markdown para verificar los links que funcionan y no funcionan correctamente",
-  "main": "./src/cli.js",
+  "main": "./src/mdLinks.js",
   "bin": {
     "md-Links": "./src/cli.js"
   },

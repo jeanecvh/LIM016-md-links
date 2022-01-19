@@ -11,8 +11,11 @@ if(args.length === 0) {
   }
 
 if (args.length === 1){
+    const miCallback = (res) => {
+      return res.forEach(e => console.log(`\nhref: ${e.href}\ntext: ${e.text}\nfile: ${e.file}\n`));
+    }
     mdLinks(args[0], { validate:false })
-    .then(res=>res.forEach(e=> console.log(`\nhref: ${e.href}\ntext: ${e.text}\nfile: ${e.file}\n`)))
+    .then(miCallback)
     .catch(err => console.log(err));
 }
 
